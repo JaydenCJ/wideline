@@ -1,0 +1,53 @@
+{
+  "name": "wideline",
+  "version": "0.1.0",
+  "description": "One wide, canonical log event per request — middleware, enrichment, sampling with tail-based error keeping, and an NDJSON toolkit CLI.",
+  "author": "JaydenCJ <aisingioro.kiyon@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "wideline": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test \"tests/*.test.mjs\"",
+    "smoke": "bash scripts/smoke.sh"
+  },
+  "keywords": [
+    "wide-events",
+    "observability",
+    "structured-logging",
+    "ndjson",
+    "sampling",
+    "middleware",
+    "canonical-log-lines"
+  ],
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaydenCJ/wideline.git"
+  },
+  "homepage": "https://github.com/JaydenCJ/wideline#readme",
+  "bugs": {
+    "url": "https://github.com/JaydenCJ/wideline/issues"
+  }
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="430" viewBox="0 0 780 430" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+  <rect width="780" height="430" rx="10" fill="#0d1117"/>
+  <rect width="780" height="34" rx="10" fill="#161b22"/>
+  <circle cx="20" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="40" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="60" cy="17" r="6" fill="#28c840"/>
+  <text x="390" y="21" fill="#8b949e" text-anchor="middle">wideline — one wide, canonical log event per request</text>
+
+  <text x="24" y="64" fill="#7ee787">$ node server.js   # every request leaves exactly one line</text>
+  <text x="24" y="88" fill="#c9d1d9">{"time":"2026-07-01T12:00:09.584Z","event.id":"req-000044","service":"shop-api",</text>
+  <text x="24" y="106" fill="#c9d1d9"> "duration_ms":70,"http.method":"POST",<tspan fill="#79c0ff">"http.route":"/checkout"</tspan>,<tspan fill="#f85149">"http.status":502</tspan>,</text>
+  <text x="24" y="124" fill="#c9d1d9"> <tspan fill="#f85149">"error.type":"UpstreamTimeout"</tspan>,"error.message":"upstream timed out after 66ms",</text>
+  <text x="24" y="142" fill="#c9d1d9"> <tspan fill="#d29922">"sample.rate":1,"sample.kept_by":"tail:error"</tspan>,"cart.items":6,"db.ms":4,</text>
+  <text x="24" y="160" fill="#c9d1d9"> "db.queries":1,"payment.provider":"cardpay","user.plan":"free"}</text>
+
+  <text x="24" y="192" fill="#8b949e"># head-sampled at 10%, but the error was kept at the tail — weight stays honest</text>
+
+  <text x="24" y="224" fill="#7ee787">$ wideline demo --requests 500 --seed 7 --rate 0.1 --slow-ms 250 | wideline stats -</text>
+  <text x="24" y="250" fill="#79c0ff">http.route     events  est  err%  p50  p95  p99  max</text>
+  <text x="24" y="268" fill="#8b949e">----------------------------------------------------</text>
+  <text x="24" y="286" fill="#c9d1d9">/products/:id      28  262   0.8   28   42   43   43</text>
+  <text x="24" y="304" fill="#c9d1d9">/checkout          32  104   <tspan fill="#d29922">1.9</tspan>  290  366  368  368</text>
+  <text x="24" y="322" fill="#c9d1d9">/products          10  100   0.0   34   56   56   56</text>
+  <text x="24" y="340" fill="#c9d1d9">/health             1   50   0.0    2    2    2    2</text>
+  <text x="24" y="366" fill="#8b949e">71 events (516 estimated pre-sampling)</text>
+
+  <text x="24" y="398" fill="#3fb950">✓ one event per request · tail-kept errors · weighted estimates · zero dependencies</text>
+</svg>
